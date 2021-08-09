@@ -1,0 +1,21 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t mkulaa1/docker-react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true mkulaa1/docker-react-test npm run test
+
+after_success:
+  - docker build -t mkulaa1/multi-client ./client
+  - docker build -t mkulaa1/multi-nginx ./nginx
+  - docker build -t mkulaa1/multi-server ./server
+  - docker build -t mkulaa1/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push mkulaa1/multi-client
+  - docker push mkulaa1/multi-nginx
+  - docker push mkulaa1/multi-server
+  - docker push mkulaa1/multi-worker
+  
