@@ -3,7 +3,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t mkulaa1/docker-react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t mkulaa1/docker-react-test -f ./client/Dockerfile.dev client
 
 script:
   - docker run -e CI=true mkulaa1/docker-react-test npm run test
