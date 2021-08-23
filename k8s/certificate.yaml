@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+
+kind: Certificate
+metadata:
+  name: amaxesibe-playpen-coza-tls
+spec:
+  secretName: amaxesibe-playpen-coza
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: amaxesibe-playpen.co.za
+  dnsNames:
+    - amaxesibe-playpen.co.za
+    - www.amaxesibe-playpen.co.za

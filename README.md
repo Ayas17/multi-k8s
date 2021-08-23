@@ -32,3 +32,6 @@ Merge changes to master on GITHUB
 - Click Merge pull request
 - Travis build and deploy to Cloud service
 
+Change back to master
+=====================
+git chckout master
